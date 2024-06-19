@@ -31,7 +31,7 @@ const isPalindroms = (num, steps = 0) => {
   
   const result = num.toString();
   const revers = result.split("").reverse().join("");  
- //return result===revers ? {num, steps} : isPalindroms(num + parseInt(revers), steps+1)
+ //return result===revers ? {result: num, steps} : isPalindroms(num + parseInt(revers), steps+1)
 
   
   if (result === revers) {return{result: num, steps};   
@@ -60,7 +60,7 @@ function getVariants(input) {
   let ch;
   input.forEach((nombers, index) => {
     ch = input.splice(index, 1)[0];
-    debugger
+    //debugger
     usedChars.push(ch);
     if (input.length == 0) {
       permArr.push(usedChars.slice());
