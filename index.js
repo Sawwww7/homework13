@@ -31,13 +31,7 @@ const isPalindroms = (num, steps = 0) => {
   
   const result = num.toString();
   const revers = result.split("").reverse().join("");  
- //return result===revers ? {result: num, steps} : isPalindroms(num + parseInt(revers), steps+1)
-
-  
-  if (result === revers) {return{result: num, steps};   
-}else {
-  return isPalindroms(num + parseInt(revers), steps+1);   
-  }  
+ return result===revers ? {result: num, steps} : isPalindroms(num + parseInt(revers), steps+1)
 };
 
 console.log(isPalindroms(96)); // {result: 4884, steps: 4}
@@ -52,26 +46,30 @@ console.log(isPalindroms(196)); // This is the so-called Lychrel number - a numb
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+let permArr = [];
+let usedChars = [];
 
-let permArr = [],
-  usedChars = [];
-
-function getVariants(input) {
+function generateVariants(input) {
   let ch;
-  input.forEach((nombers, index) => {
+  input.forEach((num, index) => {
     ch = input.splice(index, 1)[0];
-    //debugger
     usedChars.push(ch);
+
     if (input.length == 0) {
       permArr.push(usedChars.slice());
     }
-    getVariants(input);
+    generateVariants(input);
     input.splice(index, 0, ch);
     usedChars.pop();
   });
   return permArr;
 }
 
-console.log(getVariants([1, 2, 3]));
+console.log(generateVariants([1, 2, 3]));  //0:(3) [1, 2, 3]
+                                           //1:(3) [1, 3, 2]
+                                           //2:(3) [2, 1, 3]
+                                           //3:(3) [2, 3, 1]
+                                           //4:(3) [3, 1, 2]
+                                           //5:(3) [3, 2, 1]
 
 ////////////////////////////////////////////////////////////////////////////////
