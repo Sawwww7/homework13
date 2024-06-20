@@ -46,23 +46,23 @@ console.log(isPalindroms(196)); // This is the so-called Lychrel number - a numb
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-let permArr = [];
+let variantsArr = [];
 let usedChars = [];
 
 function generateVariants(input) {
-  let ch;
+  let chars;
   input.forEach((num, index) => {
-    ch = input.splice(index, 1)[0];
-    usedChars.push(ch);
+    chars = input.splice(index, 1)[0];
+    usedChars.push(chars);
 
     if (input.length == 0) {
-      permArr.push(usedChars.slice());
+      variantsArr.push(usedChars.slice());
     }
     generateVariants(input);
-    input.splice(index, 0, ch);
+    input.splice(index, 0, chars);
     usedChars.pop();
   });
-  return permArr;
+  return variantsArr;
 }
 
 console.log(generateVariants([1, 2, 3]));  //0:(3) [1, 2, 3]
